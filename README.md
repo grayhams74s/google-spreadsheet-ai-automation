@@ -25,7 +25,17 @@ A Python starter project for reading data from a Google Spreadsheet using the Go
    pip install -r requirements.txt
    ```
 
-3. Create a `.env` file in the project root:
+3. Set up a Google API key in the [Google Cloud Console](https://console.cloud.google.com/):
+
+   1. Create a new Google Cloud project, or select an existing project.
+   2. Open **APIs & Services** > **Library**, search for **Google Sheets API**, and click **Enable**.
+   3. Open **APIs & Services** > **Credentials**.
+   4. Click **Create credentials** > **API key**, then copy the generated key.
+   5. Restrict the key before using it outside local development. Under **API restrictions**, select **Restrict key** and allow the Google Sheets API.
+
+   This project currently authenticates with an API key, so the spreadsheet must be readable without a Google sign-in (for example, share it as **Anyone with the link** with **Viewer** access). For private spreadsheets or write access, use OAuth 2.0 or a service account instead.
+
+4. Create a `.env` file in the project root:
 
    ```env
    GOOGLE_API_KEY=your_google_api_key
@@ -35,7 +45,7 @@ A Python starter project for reading data from a Google Spreadsheet using the Go
 
    `SHEET_NAME` is currently passed directly to the API as a range, so use A1 notation. The worksheet tab name is not the spreadsheet file title. For example, use `Sheet1!A:Z`, or `'Sales Sheets'!A:Z` when the tab name contains spaces.
 
-4. Run the script.
+5. Run the script.
 
    ```powershell
    python main.py
