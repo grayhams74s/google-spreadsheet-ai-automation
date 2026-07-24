@@ -54,6 +54,12 @@ The script detects new products by checking the **Product ID**. Every product mu
 
 The app stores successfully processed Product IDs in `processed_ids.json`. On later runs, only rows containing an ID that is not already in that file are returned as new rows.
 
+## Workflow
+
+On each execution, the app compares Product IDs from the spreadsheet with the IDs saved in `processed_ids.json`. If it finds new rows, it processes them, sends their details to the LLM workflow, and saves their IDs. If there are no new IDs, it returns an empty result and does nothing.
+
+![New-row detection workflow](images/flow.png)
+
 ## Project structure
 
 ```text
