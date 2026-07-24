@@ -41,14 +41,28 @@ A Python starter project for reading data from a Google Spreadsheet using the Go
    python main.py
    ```
 
+## Spreadsheet data requirements
+
+The script detects new products by checking the **Product ID**. Every product must have a Product ID that is unique and does not change.
+
+- Put the Product ID in the second **column** (column B), because the script reads `row[1]`.
+- Do not place it in the second row—row 1 contains headers and rows 2 onward contain product data.
+- Do not reuse a Product ID, even if an older product row is deleted.
+- Keep the first row as the headers, for example: `Product Name`, `Product ID`, and `Price`.
+
+![Example spreadsheet with a unique Product ID column](images/Excel.png)
+
+The app stores successfully processed Product IDs in `processed_ids.json`. On later runs, only rows containing an ID that is not already in that file are returned as new rows.
+
 ## Project structure
 
 ```text
 .
-├── main.py             # Fetches values from Google Sheets
-├── requirements.txt    # Python dependencies
-├── images/             # Project images
-└── .env                # Local configuration (not committed)
+|- main.py              # Fetches values from Google Sheets
+|- requirements.txt     # Python dependencies
+|- images/              # Project images
+|- processed_ids.json   # Saved processed Product IDs (created at runtime)
+`- .env                 # Local configuration (not committed)
 ```
 
 ## Screenshot
